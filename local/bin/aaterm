@@ -1,0 +1,2 @@
+#aterm -tr -tint orange -fade 50 -fg white -bg orange +sb
+ aterm -name aterm-ws2 -tr -fn -artwiz-cure-*-*-*-*-*-*-*-*-*-*-*-* -fg grey -tint blue +sb 
