@@ -1,0 +1,4 @@
+sleep 2s && tint2 &
+xcompmgr &
+feh --bg-fill ~/plotterexp.jpg & 
+aterm -tr -tint blue -fade 50 -fg white -bg blue +sb &
