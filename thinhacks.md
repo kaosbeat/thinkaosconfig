@@ -19,10 +19,13 @@ aterm -tr -tint blue -fade 50 -fg white -bg blue +sb &
 
 # backlight
 ## system level changes
- 
- sudo vi /etc/udev/rules.d/backlight.rules
+sudo dpkg -i  mba6xbl-dkms_1.1.0_all.deb
 
- ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="<vendor>", RUN+="/bin/chgrp video /sys/class/backlight/%k/brightness"
+
+## backlightsteps below not needed for debian 11
+sudo vi /etc/udev/rules.d/backlight.rules
+
+ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="<vendor>", RUN+="/bin/chgrp video /sys/class/backlight/%k/brightness"
 ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="<vendor>", RUN+="/bin/chmod g+w /sys/class/backlight/%k/brightness"
 
 
@@ -31,6 +34,7 @@ replace vendor with 'mba6x_bl'
 and add yourself to videogroup
 
 usermod -aG video <user>
+
 
 ## keyboard backlight
 sudo brightnessctl -d smc::kbd_backlight s 0%
