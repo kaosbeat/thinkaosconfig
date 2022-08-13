@@ -72,10 +72,11 @@ function putlink () {
 
 
 ## superDirt
-DIR=local/share/SuperCollider
+DIR=config/SuperCollider
 FILE=startup.scd
-
 putlink
 
 
-
+DIR=config/SuperCollider
+FILE=superDirt_startup.scd
+putlink

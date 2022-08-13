@@ -1,6 +1,7 @@
 sleep 2s && tint2 &
 xcompmgr &
 feh --bg-fill ~/plotterexp.jpg & 
-setxkbmap -model "pc105" -layout "us" -option "" 
-xmodmap -e "keycode  94 = grave asciitilde" 
-aterm -tr -tint blue -fade 50 -fg white -bg blue +sb &
+conky -d&
+aterm -tr -tint red -fade 50 -fg white -bg blue +sb &
+setxkbmap -model "pc105" -layout "us" -option ""& 
+sleep 5; xmodmap -e "keycode  94 = grave asciitilde" &
