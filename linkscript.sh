@@ -61,3 +61,9 @@ FILE=startup.scd
 putlink
 FILE=superDirt_startup.scd
 putlink
+
+
+
+##tidal boot
+echo "/home/kaos/.cabal/share/x86_64-linux-ghc-9.0.2/tidal-1.9.2/BootTidal.hs" 
+eche "needs to be copied manually from config/tidal"

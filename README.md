@@ -3,6 +3,11 @@ macbook air linux config files
 
 https://askubuntu.com/questions/990218/camera-not-working-on-macbook-pro
 
+
+## powerkey
+sudo vi /etc/systemd/logind.conf
+HandlePowerKey=ignore
+
 ## python env hell
 ### install autoenv
 solved with autoenv?
