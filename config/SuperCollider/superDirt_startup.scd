@@ -27,9 +27,9 @@ s.reboot { // server options are only updated on reboot
 		~dirt.stop; // stop any old ones, avoid duplicate dirt (if it is nil, this won't do anything)
 		~dirt = SuperDirt(4, s); // two output channels, increase if you want to pan across more channels
 		~dirt.loadSoundFiles;   // load samples (path containing a wildcard can be passed in)
-		~dirt.loadSoundFiles("/home/kaos/tidal/samples/*");
-		~dirt.loadSoundFiles("/home/kaos/tidal/samples/samples-extra/*");
-		// ~dirt.loadSoundFiles("/home/kaos/tidal/samples/thai/*");
+		~dirt.loadSoundFiles("/home/kaos/samples/*");
+		~dirt.loadSoundFiles("/home/kaos/samples/samples-extra/*");
+		// ~dirt.loadSoundFiles("/home/kaos/samples/thai/*");
 		s.sync; // optionally: wait for samples to be read
 		 ~dirt.start(57120, 0 ! 12);   // start listening on port 57120, create two busses each sending audio to channel 0
 
