@@ -28,6 +28,7 @@ s.reboot { // server options are only updated on reboot
 		~dirt = SuperDirt(4, s); // two output channels, increase if you want to pan across more channels
 		~dirt.loadSoundFiles;   // load samples (path containing a wildcard can be passed in)
 		~dirt.loadSoundFiles("/home/kaos/samples/*");
+		~dirt.loadSoundFiles("/home/kaos/samples/tidal/*");
 		~dirt.loadSoundFiles("/home/kaos/samples/samples-extra/*");
 		// ~dirt.loadSoundFiles("/home/kaos/samples/thai/*");
 		s.sync; // optionally: wait for samples to be read

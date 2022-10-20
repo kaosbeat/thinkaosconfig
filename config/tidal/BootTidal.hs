@@ -6,7 +6,7 @@ import Sound.Tidal.Context
 import System.IO (hSetEncoding, stdout, utf8)
 hSetEncoding stdout utf8
 
-
+  
 
 
 :{
@@ -39,8 +39,8 @@ let word = pS "word"
 :{
 pivizTarget :: Target
 pivizTarget = Target {oName = "piviz",
-                       oAddress = "192.168.1.185",
-                       oPort = 8007,
+                       oAddress = "127.0.0.1",
+                       oPort = 1337,
                        oBusPort = Nothing,
                        oLatency = 0.02,
                        oWindow = Nothing,
@@ -51,16 +51,42 @@ pivizTarget = Target {oName = "piviz",
 pivizShape :: OSC
 pivizShape = OSC "/piviz" $ ArgList [("vizscene", required),
                                        ("vizcommand", sDefault "next"),
+                                       ("vizoption", sDefault "clear" ),
                                        ("vizsize", fDefault 32),
-                                       ("vizspeed", fDefault 150)
+                                       ("vizspeed", fDefault 150),
+                                       ("vizframewait", fDefault 0.1),
+                                       ("vizamount", fDefault 1),
+                                       ("vizword1", sDefault "algo"),
+                                       ("vizword2", sDefault "rave"),
+                                       ("vizx", fDefault 10),
+                                       ("vizy", fDefault 10)
+    
                                       ]
 :}
-
+--     state = args[0]
+    -- command = args[1]
+    -- option = args[2]
+    -- size = args[3]
+    -- speed = args[4]
+    -- framewait = args[5]
+    -- amount = args[6]
+    -- word1 = args[7]
+    -- word2 = args[8]
+    -- vizx = int(args[9])
+    -- vizy = int(args[10])
 :{
+
 let vizscene = pS "vizscene"
     vizcommand = pS "vizcommand"
+    vizoption = pS "vizoption"
     vizsize = pF "vizsize"
     vizspeed = pF "vizspeed"
+    vizframewait = pF "vizframewait"
+    vizamount = pF "vizamount"
+    vizword1 = pS "vizword1"
+    vizword2 = pS "vizword2"
+    vizx = pF "vizx"
+    vizy = pF "vizy"
 :}
 
 :{
