@@ -50,20 +50,19 @@ pivizTarget = Target {oName = "piviz",
                
 pivizShape :: OSC
 pivizShape = OSC "/piviz" $ ArgList [("vizscene", required),
-                                       ("vizcommand", sDefault ""),
-                                       ("vizoption", sDefault "none"),
-                                       ("vizsize", fDefault 5),
+                                       ("vizcommand", sDefault "next"),
+                                       ("vizoption", sDefault "clear"),
+                                       ("vizsize", fDefault 32),
                                        ("vizspeed", fDefault 150),
-                                       ("vizframewait", fDefault 0.05),
+                                       ("vizframewait", fDefault 0.1),
                                        ("vizamount", fDefault 1),
-                                       ("vizword1", sDefault ""),
-                                       ("vizword2", sDefault ""),
+                                       ("vizword1", sDefault "algo"),
+                                       ("vizword2", sDefault "rave"),
                                        ("vizx", fDefault 10),
                                        ("vizy", fDefault 10)
 
                                       ]
 :}
-
 
 :{
 let vizscene = pS "vizscene"
@@ -79,41 +78,11 @@ let vizscene = pS "vizscene"
     vizy = pF "vizy"
 :}
 
--- :{
--- pivizTarget :: Target
--- pivizTarget = Target {oName = "piviz",
---                        oAddress = "localhost",
---                        oPort = 8007,
---                        oBusPort = Nothing,
---                        oLatency = 0.02,
---                        oWindow = Nothing,
---                        oSchedule = Live,
---                        oHandshake = False
---                       }
-               
--- pivizShape :: OSC
--- pivizShape = OSC "/piviz" $ ArgList [("vizscene", required),
---                                        ("vizcommand", sDefault "next"),
---                                        ("vizsize", fDefault 32),
---                                        ("vizspeed", fDefault 150)
---                                       ]
--- :}
-
--- :{
--- let vizscene = pS "vizscene"
---     vizcommand = pS "vizcommand"
---     vizsize = pF "vizsize"
---     vizspeed = pF "vizspeed"
--- :}
-
-
-
-
 :{
   tidal <- startStream (defaultConfig {cVerbose = True, cFrameTimespan = 1/20, cCtrlAddr = "0.0.0.0"}) [
                                       (espeakTarget, [espeakShape]),
                                       (pivizTarget, [pivizShape]),
-                                      (superdirtTarget {oLatency = 0.00, oAddress = "127.0.0.1", oPort = 57120}, [superdirtShape])
+                                      (superdirtTarget {oLatency = 0.05, oAddress = "127.0.0.1", oPort = 57120}, [superdirtShape])
                                    ]
 :}
 
