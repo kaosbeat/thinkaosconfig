@@ -12,7 +12,7 @@ hSetEncoding stdout utf8
 :{
 espeakTarget :: Target
 espeakTarget = Target {oName = "espeak",
-                       oAddress = "192.168.1.164",
+                       oAddress = "127.0.0.1",
                        oPort = 6050,
                        oBusPort = Nothing,
                        oLatency = 0.02,
@@ -36,6 +36,87 @@ let word = pS "word"
     speed = pF "speed"
 :}
 
+
+:{
+hydraTarget :: Target
+hydraTarget = Target {oName = "hydra",
+                       oAddress = "192.168.1.185",
+                       oPort = 41234,
+                       oBusPort = Nothing,
+                       oLatency = 0.02,
+                       oWindow = Nothing,
+                       oSchedule = Live,
+                       oHandshake = False
+                      }
+               
+hydraShape :: OSC
+hydraShape = OSC "/hydra" $ ArgList [("hycmd", required),
+                                       ("hyset", sDefault "cyborg"),
+                                       ("hybeat", fDefault 32),
+                                       ("hyspeed", fDefault 150)
+                                      ]
+
+:}
+
+:{
+
+
+let hycmd = pS "hycmd"
+    hyset = pS "hyset"
+    hybeat = pF "hybeat"
+    hyspeed = pF "hyspeed"
+
+
+:}
+
+
+let hydramap = [(hydraTarget, [hydraShape])]
+
+-- hydrastream <- startStream defaultConfig hydramap
+
+
+:{
+    
+
+-- let x1 = streamReplace hydrastream 1
+--     x2 = streamReplace hydrastream 2
+--     x3 = streamReplace hydrastream 3
+--     x4 = streamReplace hydrastream 4
+
+:}
+
+-- :{
+-- hydraTarget :: Target
+-- hydraTarget = Target {oName = "hydra",
+--                        oAddress = "127.0.0.1",
+--                        oPort = 41234,
+--                        oBusPort = Nothing,
+--                        oLatency = 0.02,
+--                        oWindow = Nothing,
+--                        oSchedule = Live,
+--                        oHandshake = False
+--                       }
+               
+-- hydraShape :: OSC
+-- hydraShape = OSC "/hydra" $ ArgList [("hycmd", required),
+--                                          ("beat", Nothing),
+--                                          ("imgset", Nothing)
+--                                       ]
+-- :}
+
+-- :{
+
+-- let hycmd = pS "hycmd"
+--     beat = pI "beat"
+--     imgset = pS "imgset"
+    
+
+
+
+
+
+
+
 :{
 pivizTarget :: Target
 pivizTarget = Target {oName = "piviz",
@@ -51,7 +132,7 @@ pivizTarget = Target {oName = "piviz",
 pivizShape :: OSC
 pivizShape = OSC "/piviz" $ ArgList [("vizscene", required),
                                        ("vizcommand", sDefault "next"),
-                                       ("vizoption", sDefault "clear" ),
+                                       ("vizoption", sDefault "clear"),
                                        ("vizsize", fDefault 32),
                                        ("vizspeed", fDefault 150),
                                        ("vizframewait", fDefault 0.1),
@@ -63,19 +144,8 @@ pivizShape = OSC "/piviz" $ ArgList [("vizscene", required),
     
                                       ]
 :}
---     state = args[0]
-    -- command = args[1]
-    -- option = args[2]
-    -- size = args[3]
-    -- speed = args[4]
-    -- framewait = args[5]
-    -- amount = args[6]
-    -- word1 = args[7]
-    -- word2 = args[8]
-    -- vizx = int(args[9])
-    -- vizy = int(args[10])
-:{
 
+:{
 let vizscene = pS "vizscene"
     vizcommand = pS "vizcommand"
     vizoption = pS "vizoption"
@@ -93,9 +163,11 @@ let vizscene = pS "vizscene"
   tidal <- startStream (defaultConfig {cVerbose = True, cFrameTimespan = 1/20, cCtrlAddr = "0.0.0.0"}) [
                                       (espeakTarget, [espeakShape]),
                                       (pivizTarget, [pivizShape]),
+                                      (hydraTarget, [hydraShape]),
                                       (superdirtTarget {oLatency = 0.05, oAddress = "127.0.0.1", oPort = 57120}, [superdirtShape])
                                    ]
 :}
+
 
 
 
@@ -161,6 +233,10 @@ let only = (hush >>)
     d14 = p 14
     d15 = p 15
     d16 = p 16
+    x1 = p 17
+    x2 = p 18
+    x3 = p 19
+    x4 = p 20
 :}
 
 :{
@@ -171,6 +247,8 @@ let getState = streamGet tidal
     setR = streamSetR tidal
     setB = streamSetB tidal
 :}
+
+:script /home/kaos/tidalcode/synths/mi-ugens-params.hs
 
 :set prompt "tidal[]<> "
 :set prompt-cont ""
