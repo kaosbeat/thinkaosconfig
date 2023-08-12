@@ -192,8 +192,7 @@ let getState = streamGet tidal
     setB = streamSetB tidal
 :}
 
-:script /home/kaos/Documents/kaotec/tidalcode/synths/mi-ugens-params.hs
-
+:script /home/kaos/.local/share/SuperCollider/synthdefs/mi-ugens-params.hs
 :set prompt "tidal[]<> "
 :set prompt-cont ""
 
