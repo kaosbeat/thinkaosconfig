@@ -20,7 +20,7 @@ s.reboot { // server options are only updated on reboot
 	s.options.memSize = 8192 * 32; // increase this if you get "alloc failed" messages
 	s.options.numWireBufs = 64; // increase this if you get "exceeded number of interconnect buffers" messages
 	s.options.maxNodes = 1024 * 32; // increase this if you are getting drop outs and the message "too many nodes"
-	s.options.numOutputBusChannels = 2; // set this to your hardware output channel size, if necessary
+	s.options.numOutputBusChannels = 12; // set this to your hardware output channel size, if necessary
 	s.options.numInputBusChannels = 2; // set this to your hardware output channel size, if necessary
 	// boot the server and start SuperDirt
 	s.waitForBoot {
@@ -35,9 +35,10 @@ s.reboot { // server options are only updated on reboot
 		~dirt.loadSoundFiles("/home/kaos/samples/samples-extra/*");
 		// ~dirt.loadSoundFiles("/home/kaos/samples/thai/*");
 		s.sync; // optionally: wait for samples to be read
-		 ~dirt.start(57120, 0 ! 12);   // start listening on port 57120, create two busses each sending audio to channel 0
+		//  ~dirt.start(57120, 0 ! 12);   // start listening on port 57120, create two busses each sending audio to channel 0
 
-		//~dirt.start(57120, [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]);
+		// ~dirt.start(57120, [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]);
+		~dirt.start(57120, [0, 2, 4, 6, 8, 10]);
 		// (
 		// 	~d1 = ~dirt.orbits[0]; ~d2 = ~dirt.orbits[1]; ~d3 = ~dirt.orbits[2];
 		// 	~d4 = ~dirt.orbits[3]; ~d5 = ~dirt.orbits[0]; ~d6 = ~dirt.orbits[1];

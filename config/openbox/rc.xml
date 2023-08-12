@@ -365,17 +365,14 @@
     <keybind key="XF86LaunchA">
       <action name="Execute">
         <command>aaterm
-        </command>    <keybind key="XF86LaunchA">
-      <action name="Execute">
-        <command>aaterm
-        </command>
+        </command>   
       </action>
     </keybind>
-      </action>
-    </keybind>
-        <keybind key="XF86LaunchB">
+    <keybind key="XF86LaunchB">
       <action name="Execute">
-        <command>scrot -e 'xclip -selection clipboard -t image/png -i $f'
+        <!-- <command>scrot -e 'xclip -selection clipboard -t image/png -i $f'
+        </command> -->
+        <command>aaaterm
         </command>
       </action>
     </keybind>
@@ -846,6 +843,14 @@
     <decor>no</decor>
   </application>
 
-
+  <application name="scide">
+  <desktop>4</desktop>
+  </application>
+  <application name="Protokol">
+  <desktop>4</desktop>
+  </application>
+  <application name="qpwgraph">
+  <desktop>4</desktop>
+  </application>
   </applications>
 </openbox_config>

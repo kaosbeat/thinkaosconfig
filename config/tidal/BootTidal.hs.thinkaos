@@ -40,7 +40,10 @@ let word = pS "word"
 :{
 hydraTarget :: Target
 hydraTarget = Target {oName = "hydra",
-                       oAddress = "192.168.1.185",
+                       oAddress = "192.168.1.185", --wifi
+                    --    oAddress = "192.168.1.166", --eth
+                    --    oAddress = "127.0.0.1",
+                    --    oAddress = "10.42.0.1",
                        oPort = 41234,
                        oBusPort = Nothing,
                        oLatency = 0.02,
@@ -120,7 +123,10 @@ let hydramap = [(hydraTarget, [hydraShape])]
 :{
 pivizTarget :: Target
 pivizTarget = Target {oName = "piviz",
-                       oAddress = "127.0.0.1",
+                    --    oAddress = "192.168.1.166",
+                       oAddress = "192.168.1.185",
+                    --    oAddress = "127.0.0.1",
+                    --    oAddress = "10.42.0.1",
                        oPort = 1337,
                        oBusPort = Nothing,
                        oLatency = 0.02,
@@ -161,6 +167,7 @@ let vizscene = pS "vizscene"
 
 :{
   tidal <- startStream (defaultConfig {cVerbose = True, cFrameTimespan = 1/20, cCtrlAddr = "0.0.0.0"}) [
+--   tidal <- startStream (defaultConfig {cVerbose = True, cFrameTimespan = 1/20, cCtrlAddr = "127.0.0.1"}) [
                                       (espeakTarget, [espeakShape]),
                                       (pivizTarget, [pivizShape]),
                                       (hydraTarget, [hydraShape]),
@@ -237,6 +244,9 @@ let only = (hush >>)
     x2 = p 18
     x3 = p 19
     x4 = p 20
+    a1 = p 21
+    a2 = p 22
+    a3 = p 23
 :}
 
 :{
