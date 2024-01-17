@@ -37,3 +37,14 @@ swaps out original files with links for github update
 !will try to do a backup first!
 this script makes links from ~/.config/ to this backup 
 
+
+# bitmap fonts
+(like artwiz)
+- install artwiz
+- run `fc-list |grep artwiz`
+- run `xset fp+ /usr/share/fonts/artwiz-fonts-wl/` with directory from prev command
+- `xset fp rehash`
+- `fc-cache -fv`
+- enable support for bitmap fonts (look at `/etc/fonts/conf.d/70-enable-bitmap` or something like that)
+
+
