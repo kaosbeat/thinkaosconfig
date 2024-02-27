@@ -1,0 +1,21 @@
+#!/bin/bash
+scide &
+sleep 0.5
+SC=$(pidof scide)
+sudo chrt -a -p 99 $SC
+/opt/protokol/Protokol&
+qpwgraph&
+aterm  -g 136x48 -tr -tint blue -fade 0 -fg yellow -bg blue -fn -artwiz-cure-*-*-*-*-17-*-*-*-*-*-*-*  +sb -e screen -S rave -m emacs -nw &
+EMACS=$(pidof emacs)
+sudo chrt -a -p 99 $EMACS
+sleep 10
+
+SC=$(pidof sclang)
+sudo chrt -a -p 99 $SC
+
+SC=$(pidof scsynth)
+sudo chrt -a -p 99 $SC
+
+
+
+

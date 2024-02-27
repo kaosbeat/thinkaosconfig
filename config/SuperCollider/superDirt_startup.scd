@@ -29,7 +29,7 @@ s.reboot { // server options are only updated on reboot
 
 		load("/home/kaos/.local/share/SuperCollider/synthdefs/mi-ugens.scd");
 		load("/home/kaos/tidalcode/synths/mi-ugens.scd");
-		load("/home/kaos/tidalcode/byob.scd");
+		// load("/home/kaos/tidalcode/byob.scd");
 
 		~dirt.loadSoundFiles;   // load samples (path containing a wildcard can be passed in)
 		// ~dirt.loadSoundFiles("/home/kaos/samples/spacesamples");
@@ -49,6 +49,7 @@ s.reboot { // server options are only updated on reboot
 			~d10 = ~dirt.orbits[1]; ~d11 = ~dirt.orbits[2]; ~d12 = ~dirt.orbits[3];
 		);*/
 
+				~dirt.start(57120, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
 
 		(
 			~d1 = ~dirt.orbits[0]; ~d2 = ~dirt.orbits[1]; ~d3 = ~dirt.orbits[2];
@@ -78,7 +79,7 @@ s.reboot { // server options are only updated on reboot
 		// you can keep this separate and make it easier to switch between setups
 		// by using "path/to/my/file.scd".load and if necessary commenting out different load statements
 		// ...
-
+		~looper = TidalLooper(~dirt)
 	};
 
 	s.latency = 0.3; // increase this if you get "late" messages
